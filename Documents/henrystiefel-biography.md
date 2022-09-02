@@ -1,4 +1,5 @@
 # Henry Stiefel
+stiefehw@mail.uc.edu
 
 ## Co-op Experience
 ##### Software Developer, London Computer Systems
