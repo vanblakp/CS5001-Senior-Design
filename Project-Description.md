@@ -1,5 +1,11 @@
-team name
+# Team TBD
 
-listing of all team members with majors and email addresses
+## Members:
 
-project topic area
+- Kyle Van Blaricom - vanblakp@mail.uc.edu
+- Eric Michalski - michalew@mail.uc.edu
+- Ryan Moore - moore3r4@mail.uc.edu
+- Henry Stiefel - stiefehw@mail.uc.edu
+
+## Project Topic Area
+For our senior design project, we plan on...
