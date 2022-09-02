@@ -1,6 +1,6 @@
 # Henry Stiefel
 
-### Co-op Experience
+## Co-op Experience
 ##### Software Developer, London Computer Systems
 ###### Cincinnati, Ohio – Summer 2022
 - Wrote code for ASP.NET Web API with C#
@@ -16,13 +16,13 @@
 - Wrote code for backend underwriting print engine with C# and Visual Basic to ensure that forms and legal documents pertaining to insurance policies had correct information
 - Utilized Microsoft SQL Server database for managing print data
 
-### Skills
+## Skills
 - Programming: C#, TypeScript/JavaScript, Python, C++, Java, OOP
 - Web Development: Angular, HTML, CSS
 - Databases: SQL
 - 3D Modelling: Blender3D
 
-### Areas of Interest/Projects Sought After
+## Areas of Interest/Projects Sought After
 - Web, desktop, and mobile applications
 - Game development with Unity, Unreal Engine, or other
 - Blockchain and cryptography
