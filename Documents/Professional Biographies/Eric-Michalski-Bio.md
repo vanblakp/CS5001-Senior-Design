@@ -13,11 +13,11 @@ C++, C#, Unreal Engine, Unity, VR, Microsoft Office Suite, JavaScript, Python, V
 	--- Developed a prototype VR application for the XR training project
 	
 ***Siemens, Milford, OH 	--- Summer - 2021***
-	--- Developed new graphical UI for displaying server manager status’ over time
+	--- Developed new graphical UI for displaying server manager statusâ€™ over time
 	--- Allowed for a visual representation of information over the previous text
 
 ***Siemens, Milford, OH 	--- Spring/Fall - 2020***
-	--- Prototyped and developed Key Manager website for transferring UI’s
+	--- Prototyped and developed Key Manager website for transferring UIâ€™s
 	--- Created Behavior-Driven Development tests for UI testing
 	--- Developed SystemD Unit file for starting/stopping a Server Manager
 	--- Transferred BDD tests to Puppeteer tests for UI testing
