@@ -1,5 +1,9 @@
 # **Introduction**
-For our Senior Design project, our team plans to create a video game...
+For our Senior Design project, our team plans to create a video game using one of the popular game engines.
+I plan to go in to game development as a career so I hope this project will help me expand upon my skills to pursue that.
+Currently, we have yet to decide what specifically our game will be about.
+We are still in the brainstorming process and have generated a few ideas, but nothing has fully stuck with us yet.
+We plan to figure this out as soon as possible so we can get to work on it right away.
 
 # **Experience**
 A large portion of the computer science skills that I have acquired from UC can apply to game development.
