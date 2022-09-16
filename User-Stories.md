@@ -1,6 +1,6 @@
 # **User Stories**
 
-As a  , I want  so that I have 
+As a gamer, I want an enjoyable game experience so that I have fun while playing it
 
 As a history fan, I want to be educated on past events so that I understand history more
 
