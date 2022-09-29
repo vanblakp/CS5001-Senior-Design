@@ -26,8 +26,8 @@
 
 ## **Data Layer**
 ### **Kyle**
-- 
-- 
-- 
-- 
-- 
+- Research database methods for storing settings selected by user for loading in during future sessions (i.e. audio/visual settings, controls, etc.).
+- Design a database that will store all game info, including stored user settings and save game states.
+- Develop a database for save game state that will store event data, health/ammo data, enemy data, decision-based data, and progress from previous sessions.
+- Test database with different settings and save game states to ensure consistency of implementation when variables are altered.
+- Validate that data can be both sent to and received from the database in a seamless fashion without errors.
