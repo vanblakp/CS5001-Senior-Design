@@ -1,5 +1,6 @@
 # Assignment 6
 
+## UI Layer
 ### Milestone List
 - Complete design drafts/sketches for UI elements
 - Implement UI elements based on drafts in game engine
@@ -30,7 +31,7 @@
 | Design in-game menu | 12 |
 | Test interactions between UI, graphics, event, and data layer | 15 |
 
-
+## Data Layer
 ### Milestone List
 - Complete working database design/setup diagrams that meet requirements outlined in task list.
 - Develop database as its own individual component.
@@ -63,3 +64,34 @@
 | Design database load game state | 12 |
 | Integrate database with rest of game | 10 |
 | Test interactions between UI, graphics, event, and data layer | 15 |
+
+## Event Layer
+### Milestone List
+- Research effective and smooth character design/controls
+- Implement improved in-game action inputs and basic character code
+- Complete final version of advanced character code
+- Deliverable: final version of game with all components working
+
+### Timeline Table
+| Task | Start Date | Completion Date |
+| ----------- | ----------- | ----------- |
+| Setup project and implement basic in-game action input triggers | October 17, 2022 | December 1, 2022 |
+| **Milestone**: Research character design/controls | - | December 1, 2022 |
+| **Milestone**: Implement improved in-game action inputs and basic character code | - | January 15, 2022 |
+| Develop the player character code including movement, speed, etc. | November 1, 2022 | April 1, 2022 |
+| Incorporate a health and inventory system for the player | January 1, 2022 | April 1, 2022 |
+| Develop code that adjusts the game settings when a player changes them | January 1, 2022 | April 1, 2022 |
+| Design code that runs based on the decisions that a player makes | March 1, 2022 | April 1, 2022 |
+| **Milestone**: Complete final version of advanced character code | - | April 1, 2022 |
+| **Milestone**: (deliverable) final version of game with all components working | - | April 20, 2022 |
+
+### Effort Matrix
+| Task | Estimated Hours |
+| ----------- | ----------- |
+| Setup project and basic input triggers | 6 |
+| Research character design/controls  | 3 |
+| Implement inputs and basic character code | 9 |
+| Develop character code | 14 |
+| Incorporate a health and inverntory system and any more advanced character code HUD | 12 |
+| Develop code that adjusts settings when player changes them | 10 |
+| Design code that runs based on decisions a player makes | 15 |
