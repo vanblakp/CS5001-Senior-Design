@@ -106,7 +106,7 @@
 ### Timeline Table
 | Task | Start Date | Completion Date |
 | ----------- | ----------- | ----------- |
-| Research and begin designing or modify visual assets | October 17, 2022 | December 1, 2022 |
+| Research and begin designing or modifying visual assets | October 17, 2022 | December 1, 2022 |
 | **Milestone**: Complete resarch on making and implementing assets | - | December 1, 2022 |
 | **Milestone**: Finalize creating visual assets and how they'll be used in the game world | - | January 15, 2022 |
 | Render 3D objects used in the game's world | January 15, 2022 | February 1, 2022 |
@@ -119,7 +119,7 @@
 ### Effort Matrix
 | Task | Estimated Hours |
 | ----------- | ----------- |
-| Research and begin designing or modify visual assets | 15 |
+| Research and begin designing or modifying visual assets | 15 |
 | Complete resarch on making and implementing assets | 6 |
 | Finalize creating visual assets and how they'll be used in the game world | 15 |
 | Render 3D objects used in the game's world | 9 |
