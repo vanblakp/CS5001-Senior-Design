@@ -95,3 +95,34 @@
 | Incorporate a health and inverntory system and any more advanced character code HUD | 12 |
 | Develop code that adjusts settings when player changes them | 10 |
 | Design code that runs based on decisions a player makes | 15 |
+
+## Graphics Layer
+### Milestone List
+- Finalize creating visual assets and how they'll be used in the game world
+- Complete implementing assets into the game's world
+- Complete final version of implemented visual assets with code used for interaction
+- Deliverable: final version of game with all components working
+
+### Timeline Table
+| Task | Start Date | Completion Date |
+| ----------- | ----------- | ----------- |
+| Design or modify visual assets | October 17, 2022 | January 15, 2022 |
+| **Milestone**: Finalize creating visual assets and how they'll be used in the game world | - | January 15, 2022 |
+| Render 3D objects used in the game's world | January 15, 2022 | February 1, 2022 |
+| Render 2D sprites in conjunction with the 3D objects | January 15, 2022 | February 1, 2022 |
+| **Milestone**: Complete implementing assets into the game's world | - | February 1, 2022 |
+| Manipulate and animate objects on-screen based on event code in gameplay | February 1, 2022 | April 1, 2022 |
+| Display the game's graphics and world below the UI layer | March 1, 2022 | April 1, 2022 |
+| **Milestone**: Complete final version of implemented visual assets with code used for interaction | - | April 1, 2022 |
+| **Milestone**: (Deliverable) final version of game with all components working | - | April 20, 2022 |
+
+### Effort Matrix
+| Task | Estimated Hours |
+| ----------- | ----------- |
+| Design or modify visual assets | 15 |
+| Finalize creating visual assets and how they'll be used in the game world | 12 |
+| Render 3D objects used in the game's world | 9 |
+| Render 2D sprites in conjunction with the 3D objects | 9 |
+| Complete implementing assets into the game's world | 9 |
+| Manipulate and animate objects on-screen based on event code in gameplay | 12 |
+| Display the game's graphics and world below the UI layer | 3 |
