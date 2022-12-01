@@ -7,6 +7,10 @@
 - Ryan Moore - Computer Science - moore3r4@mail.uc.edu
 - Henry Stiefel - Computer Science - stiefehw@mail.uc.edu
 
+## Advisor:
+
+- Professor Boyang Wang
+
 ## Project Topic Area
 For our senior design project, we plan on developing a video game based on
 a historical event, namely The Alamo, to not only let players have fun, but
