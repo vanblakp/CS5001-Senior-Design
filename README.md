@@ -14,4 +14,4 @@
 6. [Self-Assessment Essays](https://github.com/vanblakp/CS5001-Senior-Design/tree/main/Documents/Capstone%20Assessments)
 7. [Professional Biographies](https://github.com/vanblakp/CS5001-Senior-Design/tree/main/Documents/Professional%20Biographies)
 8. [Budget](https://github.com/vanblakp/CS5001-Senior-Design/blob/main/Documents/Budget.md)
-9. [Appendix](https://github.com/vanblakp/CS5001-Senior-Design)
+9. [Appendix](https://github.com/vanblakp/CS5001-Senior-Design/blob/main/Documents/Appendix.md)
