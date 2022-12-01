@@ -2,7 +2,7 @@
 
 ### Meeting Notes
 
-#### Week of Assignment 3 (5 hours)
+### Week of Assignment 3 (5 hours)
 - Met team members for the first time
 - Discussed our expectations for the course
 - Discussed our expectations for our team
