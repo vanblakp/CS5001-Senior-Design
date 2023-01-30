@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float moveSpeed = 5f;
+    [HideInInspector] public float moveSpeed;
 
     public Rigidbody2D rb;
     public Animator animator;
+
+    private bool isSprinting = false;
 
     Vector2 movement;
 
@@ -18,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        moveSpeed = GetComponent<StaminaController>().walkingSpeed;
     }
 
     // Update is called once per frame
@@ -37,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Flips the side animation when player goes left since only the right one is currently used
         spriteRenderer.flipX = movement.x < 0.01 ? true : false;
+
+        // Sets to true if the player begins sprinting while walking
+        isSprinting = Input.GetButton("Sprint") && (Input.GetButton("Horizontal") || Input.GetButton("Vertical"));
     }
 
     // Similar to Update except it's consistent to avoid issues in changing framerates
