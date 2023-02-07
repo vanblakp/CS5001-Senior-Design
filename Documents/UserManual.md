@@ -15,6 +15,7 @@ A - Move character left
 S - Move character down  
 D - Move character right  
 Spacebar - Attack
+Left Shift - Run
 
 ## Screenshots
 
