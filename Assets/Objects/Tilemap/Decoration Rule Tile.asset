@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
+  m_Name: Decoration Rule Tile
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: 0}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules:
+  - m_Id: 0
+    m_Sprites:
+    - {fileID: 21300000, guid: 5e7cccf19cb2bd14c8a3d22b8bed76b2, type: 3}
+    - {fileID: 21300000, guid: 2757fa0c185ec4a44a95e2c2d161e84d, type: 3}
+    - {fileID: 21300000, guid: c16024d592052024aa1875a4194da8cc, type: 3}
+    - {fileID: 21300000, guid: 8e0ee1eabc36ff946b09ca83987d51ad, type: 3}
+    - {fileID: 21300000, guid: 7aa1a09989e1a2442ac82bd5c4205435, type: 3}
+    - {fileID: 21300000, guid: c648c26496c95324ab47b045d5302c41, type: 3}
+    - {fileID: 21300000, guid: 6c01cd2fd71b27e4988fcb99aec223f1, type: 3}
+    - {fileID: 21300000, guid: ea9120ae27c991b4b937acea96efdc41, type: 3}
+    - {fileID: 21300000, guid: c41994a173fe577479aeff2b2eef4e9a, type: 3}
+    - {fileID: 21300000, guid: ad71694bcdd1f874c8eea326aeb90945, type: 3}
+    - {fileID: 21300000, guid: cb1dd729344ef7b47af10e40682d90c1, type: 3}
+    - {fileID: 21300000, guid: 9f925f40c83f74f4cacbf0b4972bcbb0, type: 3}
+    - {fileID: 21300000, guid: 641090470ec849c4394b4f77aafc6ae8, type: 3}
+    - {fileID: 21300000, guid: 50d69d7c3c661f14a9eee28ff47b432e, type: 3}
+    - {fileID: 21300000, guid: 2b0abe7ded28ee64cb9ea11d57d44e04, type: 3}
+    - {fileID: 21300000, guid: 4774f7464f95abf49851026f8d01142f, type: 3}
+    - {fileID: 21300000, guid: 03abaf57c2a4cd34bb397a7bfd4daebb, type: 3}
+    - {fileID: 21300000, guid: fad7a713611e519468ab7bea437c2295, type: 3}
+    - {fileID: 21300000, guid: 1de3514b1a1b8804e9d27fffa3895c7b, type: 3}
+    - {fileID: 21300000, guid: 51b28138c767468408ca1a8cfd2b3c33, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    m_GameObject: {fileID: 0}
+    m_MinAnimationSpeed: 1
+    m_MaxAnimationSpeed: 1
+    m_PerlinScale: 0.745
+    m_Output: 1
+    m_ColliderType: 1
+    m_RandomTransform: 2
+    m_Neighbors: 
+    m_NeighborPositions: []
+    m_RuleTransform: 0
