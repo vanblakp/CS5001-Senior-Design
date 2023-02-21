@@ -20,7 +20,7 @@ public class HealthBase : MonoBehaviour
     }
 
     // Damages the current actor with given amount of damage
-    void DamageActor(int damage)
+    public void DamageActor(int damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
