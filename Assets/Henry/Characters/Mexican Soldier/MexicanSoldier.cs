@@ -48,10 +48,6 @@ public class MexicanSoldier : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float x = movement.x;
-        float y = movement.y;
-
-        direction = new Vector3(x, y, 0);
 
         if (direction.x > 0)
         {
