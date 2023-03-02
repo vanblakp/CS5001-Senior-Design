@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
     {
         // Cast a 2D line that retrieves all the hits
         RaycastHit2D[] hits2d = Physics2D.RaycastAll(transform.position, transform.up, distanceToShoot);
-        Debug.DrawLine(transform.position, transform.position + new Vector3(distanceToShoot, 0, 0));
+
         // For each hit found, check if it was the player, if so, then shoot a bullet
         foreach (RaycastHit2D hit2d in hits2d)
         {

@@ -15,10 +15,11 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject, delayToRemove);
     }
 
-    // When bullet hits the player or an enemy, damage associated actor
+    // What to do when bullet collides
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" || collision.tag == "Enemy")
+        // When bullet hits the player, an enemy, or a wall, damage the associated actor
+        if (collision.tag == "Player" || collision.tag == "Enemy" || collision.tag == "Wall")
         {
             HealthBase actorHealth = collision.GetComponent<HealthBase>();
             if (actorHealth != null)
