@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2226743029433435788}
   - component: {fileID: 2226743029433435787}
   - component: {fileID: 2226743029433435786}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -203,6 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   maxHealth: 100
+  removeWhenZero: 1
 --- !u!114 &2226743029433435786
 MonoBehaviour:
   m_ObjectHideFlags: 0
