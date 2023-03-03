@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DetectionZone : MonoBehaviour
 {
-    public string tagTarget = "Player";
+    public string playerTarget = "Player";
+    public string wallTarget = "Wall";
     public List<Collider2D> detectedObjs = new List<Collider2D>();
-    Collider2D col;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == tagTarget)
+        if (collision.gameObject.tag == playerTarget || collision.gameObject.tag == wallTarget)
         {
             detectedObjs.Add(collision);
         }
@@ -18,7 +18,7 @@ public class DetectionZone : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == tagTarget)
+        if (collision.gameObject.tag == playerTarget || collision.gameObject.tag == wallTarget)
         {
             detectedObjs.Remove(collision);
         }

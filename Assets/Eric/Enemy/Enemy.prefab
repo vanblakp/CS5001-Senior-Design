@@ -285,6 +285,7 @@ MonoBehaviour:
   bulletSpawnAdjust: 1.25
   distanceToShoot: 20
   moveSpeed: 1
+  player: {fileID: 2226743029433435777, guid: cfccf6c53ec231e41a6886d650e567d7, type: 3}
 --- !u!114 &8890471437271134997
 MonoBehaviour:
   m_ObjectHideFlags: 0
