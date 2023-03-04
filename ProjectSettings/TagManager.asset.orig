@@ -19,13 +19,7 @@ TagManager:
   - 
 =======
   - 
-<<<<<<< HEAD
   - 
-  - Player
->>>>>>> bb95aed2940f6fcc7ea268f8526a67e52c614166
-||||||| b00c9ba
-  - 
-=======
   - Player
 >>>>>>> bb95aed2940f6fcc7ea268f8526a67e52c614166
   - 
@@ -56,7 +50,6 @@ TagManager:
     uniqueID: 0
     locked: 0
 <<<<<<< HEAD
-<<<<<<< HEAD
   - name: Floor
     uniqueID: 2506436741
     locked: 0
@@ -73,15 +66,3 @@ TagManager:
     uniqueID: 2483182563
 >>>>>>> bb95aed2940f6fcc7ea268f8526a67e52c614166
     locked: 0
-||||||| b00c9ba
-=======
-  - name: Walls
-    uniqueID: 4218921339
-    locked: 0
-  - name: Wall Decorations
-    uniqueID: 3998368837
-    locked: 0
-  - name: Player
-    uniqueID: 2483182563
-    locked: 0
->>>>>>> bb95aed2940f6fcc7ea268f8526a67e52c614166
