@@ -15,18 +15,52 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject, delayToRemove);
     }
 
-    // When bullet hits the player or an enemy, damage associated actor
+    // What to do when bullet collides
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" || collision.tag == "Enemy")
+        // Collision layer checks so that the player/enemy doesn't shoot themselves
+        // When the bullet hits an enemy
+        if (collision.gameObject.layer == 7)
+        {
+            // When this is an enemy bullet
+            if (this.gameObject.layer == 6)
+            {
+                print("ENEMY HIT ENEMY, IGNORE");
+                return;
+            }
+            // When this is a player bullet
+            else if (this.gameObject.layer == 9)
+            {
+                print("PLAYER HIT ENEMY");
+            }
+        }
+        // When the bullet hits a player
+        else if (collision.gameObject.layer == 8)
+        {
+            // When this is an enemy bullet
+            if (this.gameObject.layer == 6)
+            {
+                print("ENEMY HIT PLAYER");
+            }
+            // When this is a player bullet
+            else if (this.gameObject.layer == 9)
+            {
+                print("PLAYER HIT PLAYER, IGNORE");
+                return;
+            }
+        }
+
+        // When bullet hits the player, an enemy, or a wall, damage the associated actor
+        if (collision.tag == "Player" || collision.tag == "Enemy" || collision.tag == "Wall")
         {
             HealthBase actorHealth = collision.GetComponent<HealthBase>();
             if (actorHealth != null)
             {
                 actorHealth.DamageActor(damage);
             }
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+        
 
         // Could spawn an effect/animation (i.e. when a bullet hits a wall, or when it hits player/enemy)
     }
