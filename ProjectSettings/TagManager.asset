@@ -3,10 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Projectile
-  - Wall
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -14,36 +11,10 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< HEAD
-<<<<<<< HEAD
-  - Blocking
   - Actor
-  - 
-=======
-  - 
-<<<<<<< HEAD
-  - 
-  - Player
->>>>>>> bb95aed2940f6fcc7ea268f8526a67e52c614166
-||||||| b00c9ba
-  - 
-=======
-||||||| bb95aed
+  - Collider
   - 
   - 
-=======
-  - EnemyProjectile
-  - Enemy
->>>>>>> 191a9e57bd37b4a0e6677d7181de37d12146d8fc
-  - Player
-<<<<<<< HEAD
->>>>>>> bb95aed2940f6fcc7ea268f8526a67e52c614166
-  - 
-||||||| bb95aed
-  - 
-=======
-  - PlayerProjectile
->>>>>>> 191a9e57bd37b4a0e6677d7181de37d12146d8fc
   - 
   - 
   - 
@@ -70,33 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-<<<<<<< HEAD
-<<<<<<< HEAD
   - name: Floor
-    uniqueID: 2506436741
+    uniqueID: 1985683573
     locked: 0
   - name: Actor
-    uniqueID: 372027681
-=======
-  - name: Walls
-    uniqueID: 4218921339
+    uniqueID: 2532280515
     locked: 0
-  - name: Wall Decorations
-    uniqueID: 3998368837
+  - name: Wall
+    uniqueID: 3491926235
     locked: 0
-  - name: Player
-    uniqueID: 2483182563
->>>>>>> bb95aed2940f6fcc7ea268f8526a67e52c614166
+  - name: Interactable
+    uniqueID: 2042913447
     locked: 0
-||||||| b00c9ba
-=======
-  - name: Walls
-    uniqueID: 4218921339
-    locked: 0
-  - name: Wall Decorations
-    uniqueID: 3998368837
-    locked: 0
-  - name: Player
-    uniqueID: 2483182563
-    locked: 0
->>>>>>> bb95aed2940f6fcc7ea268f8526a67e52c614166

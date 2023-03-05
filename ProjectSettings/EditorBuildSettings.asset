@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Eric/EricTest.unity
     guid: 2e99698cd6e35454580ea6d9e3c3a9ce
+  - enabled: 1
+    path: Assets/Kyle/Scenes/Main.unity
+    guid: 6982ed640e6797c4a820939dd728800b
+  - enabled: 1
+    path: Assets/Kyle/Scenes/Alamo1.unity
+    guid: 971d3b12a6411b647a606e2c1699c591
   m_configObjects: {}
