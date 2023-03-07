@@ -6,7 +6,7 @@ public class BulletController : MonoBehaviour
 {
     public float speed = 100.0f;
     public int damage = 10;
-    public int delayToRemove = 20;
+    public int delayToRemove = 8;
 
     // On spawn, launch projectile forwards and destory after specified amount of time
     private void Start()

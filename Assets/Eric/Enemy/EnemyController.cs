@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -22,13 +23,15 @@ public class EnemyController : MonoBehaviour
 
     private Rigidbody2D rb;
     private DetectionZone detectionZone;
-    private GameObject firedBullet;
+    private List<GameObject> firedBullets = new List<GameObject>();
     private bool canShoot = true;
 
     private Transform target;
     private NavMeshAgent agent;
 
     private bool playerFound = false;
+    private bool brokenWallFound = false;
+    private bool insideWalls = false;
 
 
     // Start is called before the first frame update
@@ -41,7 +44,8 @@ public class EnemyController : MonoBehaviour
         agent.updateUpAxis = false;
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate()  // Works aside from a few cases where an enemy breaks a wall, and while moving towards the broken wall they break another
+                                // which causes them to get stuck bouncing back and forth between the two while shooting at more walls
     {
         if (detectionZone.detectedObjs.Count > 0)
         {
@@ -49,19 +53,26 @@ public class EnemyController : MonoBehaviour
             float closest = -1;
             Collider2D moveToObj = null;
             playerFound = false;
-            // Calculate the distance from each detected object and find the closest one
+            brokenWallFound = false;
+            // Loop through all the detected objects in enemy range
             foreach (Collider2D detectedObj in detectionZone.detectedObjs)
             {
-                // Check if player is in range
-                if (detectionZone.detectedObjs[i].tag == "Player")// && agent.pathStatus.ToString() == "CompletePath")
+                // Check if player is in range and enemy is within the walls
+                if (detectionZone.detectedObjs[i].tag == "Player" && insideWalls)
                 {
                     playerFound = true;
                     moveToObj = detectionZone.detectedObjs[i];
                 }
+                // Check if there is a broken wall nearby and enemy is outside walls
+                else if (detectionZone.detectedObjs[i].tag == "Wall" && !detectionZone.detectedObjs[i].GetComponentInParent<WallController>().getIsRepaired() && !insideWalls && !brokenWallFound)
+                {
+                    brokenWallFound = true;
+                    moveToObj = detectionZone.detectedObjs[i];
+                }
 
-                // Find the closest object if player isn't in range
+                // Find the closest object if player isn't in range and target it
                 float distance = Vector3.Distance(transform.position, detectionZone.detectedObjs[i].transform.position);
-                if ((distance < closest || closest == -1) && !playerFound)
+                if ((distance < closest || closest == -1) && !playerFound && !brokenWallFound && !insideWalls)
                 {
                     closest = distance;
                     moveToObj = detectionZone.detectedObjs[i];
@@ -69,7 +80,10 @@ public class EnemyController : MonoBehaviour
                 i++;
             }
 
-            MoveTo(moveToObj);
+            if (moveToObj != null)
+            {
+                MoveTo(moveToObj);
+            }
         }
         // If nothing is found, move to player
         else
@@ -78,7 +92,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void MoveTo(Collider2D obj)     // FIX WHEN WALL BREAKS, ALLOW THE ENEMY TO MOVE THROUGH THE RUBBLE INTO THE BASE
+    private void MoveTo(Collider2D obj)
     {
         // AI Pathfinding movement
         target = obj.transform;
@@ -90,36 +104,30 @@ public class EnemyController : MonoBehaviour
         // Calculate the distance from the target
         float distance = Vector3.Distance(transform.position, obj.transform.position);
 
-        // If enemy has a walkable path, enable AI pathing, otherwise use rigidbody movement
-        if (agent.pathStatus.ToString() == "CompletePath")
+        agent.isStopped = false;
+        // If the enemy has not gotten close enough to a repaired wall or the player, continue moving towards it
+        if ((distance > maxDistanceToObject && !brokenWallFound) || distance > maxDistanceToObject && insideWalls)
+        {
+            // Move towards detected object
+            agent.isStopped = false;
+            agent.SetDestination(target.position);
+            //rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+        }
+        // Else if the enemy finds a broken wall, make them go to the center and not stop at a distance
+        else if (brokenWallFound && !insideWalls)
         {
             agent.isStopped = false;
-            // If the enemy has not gotten close enough, continue moving towards it
-            if (distance > maxDistanceToObject)
+            agent.SetDestination(target.position);
+            if (agent.remainingDistance <= 0.1)
             {
-                // Move towards detected object
-                agent.isStopped = false;
-                agent.SetDestination(target.position);
-                print("AI MOVEMENT");
-                //rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-            }
-            // Otherwise stop movement
-            else
-            {
-                agent.isStopped = true;
+                insideWalls = true;
+                agent.SetDestination(player.GetComponent<Collider2D>().transform.position);
             }
         }
+        // Otherwise stop movement
         else
         {
             agent.isStopped = true;
-
-            // If the enemy has not gotten close enough, continue moving towards it
-            if (distance > maxDistanceToObject)
-            {
-                print(" MOVING WITH RIGIDBODY ");
-                // Move towards detected object
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-            }
         }
 
         // Rotate towards detected object
@@ -137,23 +145,23 @@ public class EnemyController : MonoBehaviour
         // For each hit found, check if it was the player, if so, then shoot a bullet
         foreach (RaycastHit2D hit2d in hits2d)
         {
-            if (hit2d.collider != null && hit2d.collider.isTrigger && hit2d.collider.GetType().ToString() == "UnityEngine.BoxCollider2D" && hit2d.collider.name == "Player")
+            if (hit2d.collider != null && hit2d.collider.isTrigger && hit2d.collider.GetType().ToString() == "UnityEngine.BoxCollider2D" && hit2d.collider.name == "Player" && insideWalls)
             {
                 GameObject hitObject = hit2d.transform.gameObject;
                 if (hitObject.tag == "Player")
                 {
                     // Shoots a bullet wherever enemy is facing if bullet doesn't exist
-                    if (firedBullet == null && canShoot)
+                    if (canShoot)
                     {
                         StartCoroutine(FireRate());
                         //Debug.DrawRay(firedBullet.transform.position, firedBullet.transform.up * 20f, Color.red, 20);
                     }
                 }
             }
-            else if (!hit2d.collider.isTrigger && hit2d.collider.GetType().ToString() == "UnityEngine.BoxCollider2D" && hit2d.transform.gameObject.tag == "Wall")
+            else if (!hit2d.collider.isTrigger && hit2d.collider.GetType().ToString() == "UnityEngine.BoxCollider2D" && hit2d.transform.gameObject.tag == "Wall" && !insideWalls)
             {
                 // Shoots a bullet wherever enemy is facing if bullet doesn't exist
-                if (firedBullet == null && canShoot)
+                if (canShoot)
                 {
                     StartCoroutine(FireRate());
                     //Debug.DrawRay(firedBullet.transform.position, firedBullet.transform.up * 20f, Color.red, 20);
@@ -167,10 +175,11 @@ public class EnemyController : MonoBehaviour
     {
         canShoot = false;
 
-        firedBullet = Instantiate(bulletPrefab) as GameObject;
+        GameObject firedBullet = Instantiate(bulletPrefab) as GameObject;
         firedBullet.layer = 6;
         firedBullet.transform.position = transform.TransformPoint(Vector3.up * bulletSpawnAdjust);
         firedBullet.transform.rotation = transform.rotation;
+        firedBullets.Append(firedBullet);
 
         // Randomize the fire rate for more variation
         float actualRate = Random.Range(fireRate - fireRateRandomness, fireRate + fireRateRandomness);

@@ -69,4 +69,9 @@ public class WallController : MonoBehaviour
         spriteRenderer.enabled = true;
         repaired = true;
     }
+
+    public bool getIsRepaired()
+    {
+        return repaired;
+    }
 }
