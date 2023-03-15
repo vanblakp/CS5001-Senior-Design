@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed = 1;
     public float fireRate = 1f;
     public float fireRateRandomness = 0.5f;
+    public int delayToRemoveBullet = 8;
 
     [SerializeField] private GameObject player;
 
@@ -176,6 +177,7 @@ public class EnemyController : MonoBehaviour
         canShoot = false;
 
         GameObject firedBullet = Instantiate(bulletPrefab) as GameObject;
+        firedBullet.GetComponent<BulletController>().EnableDestroy(firedBullet, delayToRemoveBullet);
         firedBullet.layer = 6;
         firedBullet.transform.position = transform.TransformPoint(Vector3.up * bulletSpawnAdjust);
         firedBullet.transform.rotation = transform.rotation;

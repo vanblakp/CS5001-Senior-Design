@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 524633674654511062}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,6 +30,7 @@ Transform:
   m_Children:
   - {fileID: 2222376406141181925}
   - {fileID: 3966395228563614619}
+  - {fileID: 4669175697490947050}
   m_Father: {fileID: 777034440245747466}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43,7 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5881529728210617766}
   - component: {fileID: 5955937792696326880}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Broken
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -107,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4934613705947749396}
   - component: {fileID: 6197937003446165958}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallBroken_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +195,7 @@ GameObject:
   - component: {fileID: 777034440245747477}
   - component: {fileID: 6839448342913863623}
   - component: {fileID: 4648353632369084600}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall Prefab
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -339,7 +340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426200078441202726}
   - component: {fileID: 6858129176709298681}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallBroken_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3734588280185535087}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,6 +444,7 @@ Transform:
   m_Children:
   - {fileID: 4597645750115716492}
   - {fileID: 1605811709028144814}
+  - {fileID: 1085646195513486542}
   m_Father: {fileID: 777034440245747466}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -457,7 +459,7 @@ GameObject:
   - component: {fileID: 4597645750115716492}
   - component: {fileID: 7640967014996907661}
   - component: {fileID: 8227138446312562231}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Block (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -558,7 +560,7 @@ GameObject:
   - component: {fileID: 2222376406141181925}
   - component: {fileID: 6069186595557637489}
   - component: {fileID: 6487689146388935796}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Block (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +661,7 @@ GameObject:
   - component: {fileID: 1605811709028144814}
   - component: {fileID: 7424017188957390831}
   - component: {fileID: 5423354855680619297}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Block (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4698313080133814485}
   - component: {fileID: 4687511187200731414}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallBroken_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,6 +835,77 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5421841450438981087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4669175697490947050}
+  - component: {fileID: 2390033498769011104}
+  - component: {fileID: 7758409209058018580}
+  m_Layer: 0
+  m_Name: RepairCollision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4669175697490947050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421841450438981087}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.3099556, y: -0.066342354, z: 0.06572366}
+  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 524633674654511062}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2390033498769011104
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421841450438981087}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.75, y: 1.25}
+    newSize: {x: 0.75, y: 1.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 1.75}
+  m_EdgeRadius: 0
+--- !u!114 &7758409209058018580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5421841450438981087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61393331d30cee4439d1171c7569348a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5783724936926101818
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,7 +916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5954505633673967812}
   - component: {fileID: 2010712090423999721}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,7 +1001,7 @@ GameObject:
   - component: {fileID: 3966395228563614619}
   - component: {fileID: 3267597375169425368}
   - component: {fileID: 7144039086755859518}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Block (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1028,7 +1101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1057890293769254224}
   - component: {fileID: 47223229022678735}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallBroken_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1112,7 +1185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5162191336861634602}
   - component: {fileID: 7489081299145268186}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallBroken_6 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1196,7 +1269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 906275556347814432}
   - component: {fileID: 6683109912207403042}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WallBroken_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1270,3 +1343,74 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &9021340003260697808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085646195513486542}
+  - component: {fileID: 1723878168332270254}
+  - component: {fileID: 832423736545829593}
+  m_Layer: 0
+  m_Name: RepairCollision (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1085646195513486542
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021340003260697808}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.3099556, y: -0.066342354, z: 0.06572366}
+  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3734588280185535087}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1723878168332270254
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021340003260697808}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.75, y: 1.25}
+    newSize: {x: 0.75, y: 1.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.8, y: 0.45}
+  m_EdgeRadius: 0
+--- !u!114 &832423736545829593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021340003260697808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61393331d30cee4439d1171c7569348a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

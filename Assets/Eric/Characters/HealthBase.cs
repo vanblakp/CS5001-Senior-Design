@@ -12,6 +12,7 @@ public class HealthBase : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 
     // Update is called once per frame
@@ -26,7 +27,7 @@ public class HealthBase : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0 && removeWhenZero)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
             // Then reload the level or bring up menu
         }
     }

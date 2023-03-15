@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 6965140738975882047}
   - component: {fileID: 8890471437271134997}
   - component: {fileID: 3830909617953121004}
+  - component: {fileID: 563047343258727063}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -289,6 +290,7 @@ MonoBehaviour:
   moveSpeed: 1
   fireRate: 1
   fireRateRandomness: 0.5
+  delayToRemoveBullet: 8
   player: {fileID: 2226743029433435777, guid: cfccf6c53ec231e41a6886d650e567d7, type: 3}
 --- !u!114 &8890471437271134997
 MonoBehaviour:
@@ -327,3 +329,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &563047343258727063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8863758012896810142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc74086ed62f734896c38412248e4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 100
+  removeWhenZero: 1
