@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -850,7 +850,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mexican Soldier Side Sheet_23: -1956717779
       Mexican Soldier Side Sheet_12: 897762862
       Mexican Soldier Side Sheet_17: -592814801
       Mexican Soldier Side Sheet_24: 1197761179
@@ -883,6 +882,7 @@ TextureImporter:
       Mexican Soldier Side Sheet_29: 2065860523
       Mexican Soldier Side Sheet_21: -1662781865
       Mexican Soldier Side Sheet_33: 1375740168
+      Mexican Soldier Side Sheet_23: -1956717779
       Mexican Soldier Side Sheet_22: -1237678388
       Mexican Soldier Side Sheet_2: 605847566
   spritePackingTag: 

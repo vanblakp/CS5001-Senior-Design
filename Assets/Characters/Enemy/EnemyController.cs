@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     public int delayToRemoveBullet = 8;
 
     [SerializeField] private GameObject player;
+    private GameObject bulletSpawnPoint;
 
     private Rigidbody2D rb;
     private DetectionZone detectionZone;
@@ -43,6 +44,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        bulletSpawnPoint = transform.Find("BulletSpawnPoint").gameObject;
     }
 
     private void FixedUpdate()  // Works aside from a few cases where an enemy breaks a wall, and while moving towards the broken wall they break another
@@ -131,17 +133,27 @@ public class EnemyController : MonoBehaviour
             agent.isStopped = true;
         }
 
+        // Adjust bulletSpawnPoint
+        Vector2 directionBullet = (obj.transform.position - bulletSpawnPoint.transform.position).normalized;
+        bulletSpawnPoint.GetComponent<Rigidbody2D>().MovePosition(rb.position + directionBullet * moveSpeed * Time.fixedDeltaTime);
+
+        // Using mouse position on screen, set direction to fire bullet
+        Vector2 lookDir = player.GetComponent<Rigidbody2D>().position - rb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        //rb.rotation = angle;
+        //bulletSpawnPoint.GetComponent<Rigidbody2D>().rotation = angle;
+
         // Rotate towards detected object
         float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+        bulletSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
     }
 
     // Update is called once per frame
     void Update()
     {
         // Cast a 2D line that retrieves all the hits
-        RaycastHit2D[] hits2d = Physics2D.RaycastAll(transform.position, transform.up, range);
-        //Debug.DrawRay(transform.position, transform.up * range, Color.green, 20);
+        RaycastHit2D[] hits2d = Physics2D.RaycastAll(bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.up, range);
+        //Debug.DrawRay(bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.up * range, Color.green, 20);
 
         // For each hit found, check if it was the player, if so, then shoot a bullet
         foreach (RaycastHit2D hit2d in hits2d)
@@ -179,8 +191,8 @@ public class EnemyController : MonoBehaviour
         GameObject firedBullet = Instantiate(bulletPrefab) as GameObject;
         firedBullet.GetComponent<BulletController>().EnableDestroy(firedBullet, delayToRemoveBullet);
         firedBullet.layer = 6;
-        firedBullet.transform.position = transform.TransformPoint(Vector3.up * bulletSpawnAdjust);
-        firedBullet.transform.rotation = transform.rotation;
+        firedBullet.transform.position = bulletSpawnPoint.transform.TransformPoint(Vector3.up * bulletSpawnAdjust);
+        firedBullet.transform.rotation = bulletSpawnPoint.transform.rotation;
         firedBullets.Append(firedBullet);
 
         // Randomize the fire rate for more variation

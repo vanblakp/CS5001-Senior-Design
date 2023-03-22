@@ -12,7 +12,6 @@ public class BulletController : MonoBehaviour
     private void Start()
     {
         gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * speed);
-        //gameObject.name = "Bullet " + Random.RandomRange(0,10000);
         //Destroy(gameObject, delayToRemove);
     }
 
@@ -24,45 +23,8 @@ public class BulletController : MonoBehaviour
     // What to do when bullet collides
     void OnTriggerEnter2D(Collider2D collision)
     {
-        bool canDamage = false;
-        // Collision layer checks to determine what bullet hit and if it should do anything
-        // When the bullet hits an enemy and is not the enemy range trigger
-        if (collision.gameObject.layer == 7 && !collision.isTrigger)
-        {
-            // When this is an enemy bullet
-            if (this.gameObject.layer == 6)
-            {
-                print("ENEMY HIT ENEMY, IGNORE");
-                canDamage = false;
-                return;
-            }
-            // When this is a player bullet
-            else if (this.gameObject.layer == 9)
-            {
-                print("PLAYER HIT ENEMY");
-                canDamage = true;
-            }
-        }
-        // When the bullet hits a player
-        else if (collision.gameObject.layer == 8)
-        {
-            // When this is an enemy bullet
-            if (this.gameObject.layer == 6)
-            {
-                print("ENEMY HIT PLAYER");
-                canDamage = true;
-            }
-            // When this is a player bullet
-            else if (this.gameObject.layer == 9)
-            {
-                print("PLAYER HIT PLAYER, IGNORE");
-                canDamage = false;
-                return;
-            }
-        }
-
         // When bullet hits the player, an enemy, or a wall, damage the associated actor
-        if (!collision.isTrigger && ((canDamage && collision.tag == "Player" || collision.tag == "Enemy") || collision.tag == "Wall"))
+        if ((collision.isTrigger && collision.tag == "Player") || (!collision.isTrigger && (collision.tag == "Player" || collision.tag == "Enemy") || collision.tag == "Wall"))
         {
             HealthBase actorHealth = collision.GetComponent<HealthBase>();
             if (actorHealth != null)
