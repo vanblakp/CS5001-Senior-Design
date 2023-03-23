@@ -85420,6 +85420,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2226743029433435787, guid: cfccf6c53ec231e41a6886d650e567d7, type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 2226743029433435789, guid: cfccf6c53ec231e41a6886d650e567d7, type: 3}
       propertyPath: cam
       value: 

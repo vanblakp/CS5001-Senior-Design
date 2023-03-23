@@ -35,6 +35,9 @@ public class EnemyController : MonoBehaviour
     private bool brokenWallFound = false;
     private bool insideWalls = false;
 
+    private Animator animator;
+    bool facingRight;
+
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +48,8 @@ public class EnemyController : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         bulletSpawnPoint = transform.Find("BulletSpawnPoint").gameObject;
+        animator = GetComponent<Animator>();
+        facingRight = true;
     }
 
     private void FixedUpdate()  // Works aside from a few cases where an enemy breaks a wall, and while moving towards the broken wall they break another
@@ -108,6 +113,8 @@ public class EnemyController : MonoBehaviour
         float distance = Vector3.Distance(transform.position, obj.transform.position);
 
         agent.isStopped = false;
+        animator.SetBool("isWalking", true);
+
         // If the enemy has not gotten close enough to a repaired wall or the player, continue moving towards it
         if ((distance > maxDistanceToObject && !brokenWallFound) || distance > maxDistanceToObject && insideWalls)
         {
@@ -131,6 +138,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             agent.isStopped = true;
+            animator.SetBool("isWalking", false);
         }
 
         // Adjust bulletSpawnPoint
@@ -146,6 +154,20 @@ public class EnemyController : MonoBehaviour
         // Rotate towards detected object
         float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         bulletSpawnPoint.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+
+        if (direction != Vector2.zero)
+        {
+            animator.SetFloat("X", direction.x);
+            animator.SetFloat("Y", direction.y);
+        }
+        if (direction.x > 0 && !facingRight)
+        {
+            FlipDirection();
+        }
+        if (direction.x < 0 && facingRight)
+        {
+            FlipDirection();
+        }
     }
 
     // Update is called once per frame
@@ -187,18 +209,36 @@ public class EnemyController : MonoBehaviour
     IEnumerator FireRate()
     {
         canShoot = false;
+        animator.SetTrigger("shoot");
+        Invoke("ShootBullet", 0.4f);
+        
+        // Randomize the fire rate for more variation
+        float actualRate = Random.Range(fireRate - fireRateRandomness, fireRate + fireRateRandomness);
+        if (actualRate < 1.2f)
+        {
+            actualRate = 1.2f;
+        }
+        yield return new WaitForSeconds(actualRate);
+        canShoot = true;
+    }
 
+    void ShootBullet()
+    {
         GameObject firedBullet = Instantiate(bulletPrefab) as GameObject;
         firedBullet.GetComponent<BulletController>().EnableDestroy(firedBullet, delayToRemoveBullet);
         firedBullet.layer = 6;
         firedBullet.transform.position = bulletSpawnPoint.transform.TransformPoint(Vector3.up * bulletSpawnAdjust);
         firedBullet.transform.rotation = bulletSpawnPoint.transform.rotation;
         firedBullets.Append(firedBullet);
+        animator.ResetTrigger("shoot");
+    }
 
-        // Randomize the fire rate for more variation
-        float actualRate = Random.Range(fireRate - fireRateRandomness, fireRate + fireRateRandomness);
+    void FlipDirection()
+    {
+        Vector3 currentScale = rb.transform.localScale;
+        currentScale.x *= -1;
+        rb.transform.localScale = currentScale;
 
-        yield return new WaitForSeconds(actualRate);
-        canShoot = true;
+        facingRight = !facingRight;
     }
 }
