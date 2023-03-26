@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
@@ -35,6 +36,8 @@ public class EnemyController : MonoBehaviour
     private bool brokenWallFound = false;
     private bool insideWalls = false;
 
+    private HealthBase healthBase;
+
     private Animator animator;
     bool facingRight;
 
@@ -48,6 +51,7 @@ public class EnemyController : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         bulletSpawnPoint = transform.Find("BulletSpawnPoint").gameObject;
+        healthBase = gameObject.GetComponent<HealthBase>();
         animator = GetComponent<Animator>();
         facingRight = true;
     }
@@ -55,48 +59,61 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()  // Works aside from a few cases where an enemy breaks a wall, and while moving towards the broken wall they break another
                                 // which causes them to get stuck bouncing back and forth between the two while shooting at more walls
     {
-        if (detectionZone.detectedObjs.Count > 0)
+        if (healthBase.isAlive)
         {
-            int i = 0;
-            float closest = -1;
-            Collider2D moveToObj = null;
-            playerFound = false;
-            brokenWallFound = false;
-            // Loop through all the detected objects in enemy range
-            foreach (Collider2D detectedObj in detectionZone.detectedObjs)
+            if (detectionZone.detectedObjs.Count > 0)
             {
-                // Check if player is in range and enemy is within the walls
-                if (detectionZone.detectedObjs[i].tag == "Player" && insideWalls)
+                int i = 0;
+                float closest = -1;
+                Collider2D moveToObj = null;
+                playerFound = false;
+                brokenWallFound = false;
+                // Loop through all the detected objects in enemy range
+                foreach (Collider2D detectedObj in detectionZone.detectedObjs)
                 {
-                    playerFound = true;
-                    moveToObj = detectionZone.detectedObjs[i];
-                }
-                // Check if there is a broken wall nearby and enemy is outside walls
-                else if (detectionZone.detectedObjs[i].tag == "Wall" && !detectionZone.detectedObjs[i].GetComponentInParent<WallController>().getIsRepaired() && !insideWalls && !brokenWallFound)
-                {
-                    brokenWallFound = true;
-                    moveToObj = detectionZone.detectedObjs[i];
+                    // If not null (if player hasn't died and collision is removed)
+                    if (detectedObj)
+                    {
+                        // Check if player is in range and enemy is within the walls
+                        if (detectionZone.detectedObjs[i].tag == "Player" && insideWalls)
+                        {
+                            playerFound = true;
+                            moveToObj = detectionZone.detectedObjs[i];
+                        }
+                        // Check if there is a broken wall nearby and enemy is outside walls
+                        else if (detectionZone.detectedObjs[i].tag == "Wall" && !detectionZone.detectedObjs[i].GetComponentInParent<WallController>().getIsRepaired() && !insideWalls && !brokenWallFound)
+                        {
+                            brokenWallFound = true;
+                            moveToObj = detectionZone.detectedObjs[i];
+                        }
+
+                        // Find the closest object if player isn't in range and target it
+                        float distance = Vector3.Distance(transform.position, detectionZone.detectedObjs[i].transform.position);
+                        if ((distance < closest || closest == -1) && !playerFound && !brokenWallFound && !insideWalls)
+                        {
+                            closest = distance;
+                            moveToObj = detectionZone.detectedObjs[i];
+                        }
+                    }
+                    i++;
                 }
 
-                // Find the closest object if player isn't in range and target it
-                float distance = Vector3.Distance(transform.position, detectionZone.detectedObjs[i].transform.position);
-                if ((distance < closest || closest == -1) && !playerFound && !brokenWallFound && !insideWalls)
+                if (moveToObj != null)
                 {
-                    closest = distance;
-                    moveToObj = detectionZone.detectedObjs[i];
+                    MoveTo(moveToObj);
                 }
-                i++;
             }
-
-            if (moveToObj != null)
+            // If nothing is found, move to player
+            else
             {
-                MoveTo(moveToObj);
+                MoveTo(player.GetComponent<Collider2D>());
             }
         }
-        // If nothing is found, move to player
-        else
+        else // Else stop moving and die
         {
-            MoveTo(player.GetComponent<Collider2D>());
+            //MoveTo(gameObject.GetComponent<Collider2D>());
+            moveSpeed = 0;
+            agent.ResetPath();
         }
     }
 
@@ -173,17 +190,29 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Cast a 2D line that retrieves all the hits
-        RaycastHit2D[] hits2d = Physics2D.RaycastAll(bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.up, range);
-        //Debug.DrawRay(bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.up * range, Color.green, 20);
-
-        // For each hit found, check if it was the player, if so, then shoot a bullet
-        foreach (RaycastHit2D hit2d in hits2d)
+        if (healthBase.isAlive)
         {
-            if (hit2d.collider != null && hit2d.collider.isTrigger && hit2d.collider.GetType().ToString() == "UnityEngine.BoxCollider2D" && hit2d.collider.name == "Player" && insideWalls)
+            // Cast a 2D line that retrieves all the hits
+            RaycastHit2D[] hits2d = Physics2D.RaycastAll(bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.up, range);
+            //Debug.DrawRay(bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.up * range, Color.green, 20);
+
+            // For each hit found, check if it was the player, if so, then shoot a bullet
+            foreach (RaycastHit2D hit2d in hits2d)
             {
-                GameObject hitObject = hit2d.transform.gameObject;
-                if (hitObject.tag == "Player")
+                if (hit2d.collider != null && hit2d.collider.isTrigger && hit2d.collider.GetType().ToString() == "UnityEngine.BoxCollider2D" && hit2d.collider.name == "Player" && insideWalls)
+                {
+                    GameObject hitObject = hit2d.transform.gameObject;
+                    if (hitObject.tag == "Player")
+                    {
+                        // Shoots a bullet wherever enemy is facing if bullet doesn't exist
+                        if (canShoot)
+                        {
+                            StartCoroutine(FireRate());
+                            //Debug.DrawRay(firedBullet.transform.position, firedBullet.transform.up * 20f, Color.red, 20);
+                        }
+                    }
+                }
+                else if (!hit2d.collider.isTrigger && hit2d.collider.GetType().ToString() == "UnityEngine.BoxCollider2D" && hit2d.transform.gameObject.tag == "Wall" && !insideWalls)
                 {
                     // Shoots a bullet wherever enemy is facing if bullet doesn't exist
                     if (canShoot)
@@ -191,15 +220,6 @@ public class EnemyController : MonoBehaviour
                         StartCoroutine(FireRate());
                         //Debug.DrawRay(firedBullet.transform.position, firedBullet.transform.up * 20f, Color.red, 20);
                     }
-                }
-            }
-            else if (!hit2d.collider.isTrigger && hit2d.collider.GetType().ToString() == "UnityEngine.BoxCollider2D" && hit2d.transform.gameObject.tag == "Wall" && !insideWalls)
-            {
-                // Shoots a bullet wherever enemy is facing if bullet doesn't exist
-                if (canShoot)
-                {
-                    StartCoroutine(FireRate());
-                    //Debug.DrawRay(firedBullet.transform.position, firedBullet.transform.up * 20f, Color.red, 20);
                 }
             }
         }

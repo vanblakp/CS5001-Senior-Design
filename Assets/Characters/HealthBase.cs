@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthBase : MonoBehaviour
 {
     [HideInInspector] public int currentHealth;
+    [HideInInspector] public bool isAlive = true;
     public int maxHealth;
     public bool removeWhenZero = true;
 
@@ -27,6 +28,7 @@ public class HealthBase : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0 && removeWhenZero)
         {
+            isAlive = false;
             Animator animator = gameObject.GetComponent<Animator>();
             animator.Play("Death");
             Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length); 
