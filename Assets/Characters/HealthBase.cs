@@ -10,7 +10,7 @@ public class HealthBase : MonoBehaviour
     public bool removeWhenZero = true;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         currentHealth = maxHealth;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -23,7 +23,7 @@ public class HealthBase : MonoBehaviour
     }
 
     // Damages the current actor with given amount of damage
-    public void DamageActor(int damage)
+    public virtual void DamageActor(int damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0 && removeWhenZero)

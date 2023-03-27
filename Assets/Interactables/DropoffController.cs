@@ -9,6 +9,8 @@ public class DropoffController : MonoBehaviour
     private PlayerMovement playerMovement;
     private HealthBase healthBase;
 
+    public int repairNeeded = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,7 @@ public class DropoffController : MonoBehaviour
                 playerMovement.pickedUpItem = "";
 
                 // Repair health based on a percentage of the maximum health + 1 for adjustment
-                healthBase.currentHealth = healthBase.currentHealth + ((healthBase.maxHealth / 3) + 1);
+                healthBase.currentHealth = healthBase.currentHealth + ((healthBase.maxHealth / repairNeeded) + 1);
             }
         }
     }

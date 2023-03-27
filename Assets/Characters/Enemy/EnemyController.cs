@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour
     public float fireRate = 1f;
     public float fireRateRandomness = 0.5f;
     public int delayToRemoveBullet = 8;
+    public int bulletDamage = 10;
 
     [SerializeField] private GameObject player;
     private GameObject bulletSpawnPoint;
@@ -247,6 +248,7 @@ public class EnemyController : MonoBehaviour
         GameObject firedBullet = Instantiate(bulletPrefab) as GameObject;
         firedBullet.GetComponent<BulletController>().EnableDestroy(firedBullet, delayToRemoveBullet);
         firedBullet.layer = 6;
+        firedBullet.GetComponent<BulletController>().damage = bulletDamage;
         firedBullet.transform.position = bulletSpawnPoint.transform.TransformPoint(Vector3.up * bulletSpawnAdjust);
         firedBullet.transform.rotation = bulletSpawnPoint.transform.rotation;
         firedBullets.Append(firedBullet);

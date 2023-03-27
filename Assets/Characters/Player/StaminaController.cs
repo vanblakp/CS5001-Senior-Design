@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class StaminaController : MonoBehaviour
 {
     [Header("Stamina Main Parameters")]
-    [Range(0.0f, 200.0f)] public float playerStamina = 100.0f;
+    [Range(0.0f, 200.0f)] private float playerStamina = 100.0f;
     [SerializeField] private float maxStamina = 100.0f;
     [HideInInspector] public bool hasRegenerated = true;
     [HideInInspector] public bool isSprinting = false;
@@ -24,8 +24,13 @@ public class StaminaController : MonoBehaviour
     [SerializeField] public int slowedSpeed = 3;
 
     [Header("Stamina UI Elements")]
-    [SerializeField] private Image staminaProgressUI = null;
-    [SerializeField] private CanvasGroup sliderCanvasGroup = null;
+    public ProgressBar staminaBar;
+
+    private void Start()
+    {
+        staminaBar.SetMaxValue(maxStamina);
+        playerStamina = maxStamina;
+    }
 
     // Update is called once per frame
     void Update()
@@ -54,6 +59,7 @@ public class StaminaController : MonoBehaviour
                 else if (isRegenerating)
                 {
                     playerStamina += staminaRegen * Time.deltaTime;
+                    staminaBar.SetValue(playerStamina);
                     //print("REGEN: " + playerStamina);
                 }
 
@@ -99,21 +105,6 @@ public class StaminaController : MonoBehaviour
         yield break;
     }
 
-    // Updates stamina for the UI slider
-    void UpdateStamina(int value)
-    {
-        staminaProgressUI.fillAmount = playerStamina / maxStamina;
-
-        if (value == 0)
-        {
-            sliderCanvasGroup.alpha = 0;
-        }
-        else
-        {
-            sliderCanvasGroup.alpha = 1;
-        }
-    }
-
     // Drains stamina over time due to player sprinting
     public void Sprinting()
     {
@@ -126,6 +117,7 @@ public class StaminaController : MonoBehaviour
             // Set to sprinting speed
             GetComponent<PlayerMovement>().moveSpeed = sprintingSpeed;
             playerStamina -= staminaDrain * Time.deltaTime;
+            staminaBar.SetValue(playerStamina);
             //print("DRAIN: " + playerStamina);
 
             // Once stamina does not exist, stop sprinting and slow the player down

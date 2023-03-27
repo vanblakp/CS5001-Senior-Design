@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 4331625912201832373}
   - component: {fileID: 2226743029433435789}
   - component: {fileID: 2226743029433435788}
-  - component: {fileID: 2226743029433435787}
+  - component: {fileID: 2354000869569659867}
   - component: {fileID: 2226743029433435786}
   m_Layer: 8
   m_Name: Player
@@ -230,6 +230,7 @@ MonoBehaviour:
   fireRate: 1
   fireRateRandomness: 0.5
   delayToRemoveBullet: 8
+  bulletDamage: 25
 --- !u!95 &2226743029433435788
 Animator:
   serializedVersion: 5
@@ -250,7 +251,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &2226743029433435787
+--- !u!114 &2354000869569659867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,12 +260,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2226743029433435777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dc74086ed62f734896c38412248e4bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e12e5fec163fad4ebfba3ea9ab132bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 100
+  currentHealth: 0
+  isAlive: 1
   maxHealth: 100
   removeWhenZero: 1
+  healthBar: {fileID: 0}
 --- !u!114 &2226743029433435786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,8 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ce8ed654bf98944b5e8625664d236a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStamina: 100
-  maxStamina: 100
+  maxStamina: 150
   hasRegenerated: 1
   isSprinting: 0
   staminaDrain: 20
@@ -287,5 +289,4 @@ MonoBehaviour:
   sprintingSpeed: 9
   walkingSpeed: 6
   slowedSpeed: 3
-  staminaProgressUI: {fileID: 0}
-  sliderCanvasGroup: {fileID: 0}
+  staminaBar: {fileID: 0}

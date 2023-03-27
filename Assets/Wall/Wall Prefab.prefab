@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  isAlive: 1
   maxHealth: 100
   removeWhenZero: 0
 --- !u!114 &4648353632369084600
@@ -906,6 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61393331d30cee4439d1171c7569348a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  repairNeeded: 2
 --- !u!1 &5783724936926101818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,3 +1416,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61393331d30cee4439d1171c7569348a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  repairNeeded: 2

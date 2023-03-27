@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     [HideInInspector] public float moveSpeed;
 
     public GameObject bulletPrefab;
@@ -18,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float fireRate = 1f;
     public float fireRateRandomness = 0.5f;
     public int delayToRemoveBullet = 8;
+    public int bulletDamage = 10;
 
     private bool canShoot = true;
     private List<GameObject> firedBullets = new List<GameObject>();
@@ -92,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
         firedBullet.layer = 9;
         firedBullet.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
         firedBullet.GetComponent<BulletController>().EnableDestroy(firedBullet, delayToRemoveBullet);
+        firedBullet.GetComponent<BulletController>().damage = bulletDamage;
         firedBullet.transform.position = bulletSpawnPoint.transform.TransformPoint(Vector3.up * bulletSpawnAdjust);
         firedBullet.transform.rotation = bulletSpawnPoint.transform.rotation;
         firedBullets.Append(firedBullet);

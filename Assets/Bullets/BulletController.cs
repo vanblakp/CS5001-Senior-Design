@@ -24,7 +24,7 @@ public class BulletController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // When bullet hits the player, an enemy, or a wall, damage the associated actor
-        if ((collision.isTrigger && collision.tag == "Player") || (!collision.isTrigger && (collision.tag == "Player" || collision.tag == "Enemy") || collision.tag == "Wall"))
+        if ((collision.isTrigger && collision.tag == "Player") || (!collision.isTrigger && collision.tag == "Enemy" || collision.tag == "Wall"))
         {
             HealthBase actorHealth = collision.GetComponent<HealthBase>();
             if (actorHealth != null)
