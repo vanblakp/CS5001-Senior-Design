@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickupController : MonoBehaviour
 {
     public string item = "Brick";
+    public Sprite spriteImg;
+
+    private GameObject itemUISpot;
 
     private bool canCheck = false;
     private PlayerMovement playerMovement;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        itemUISpot = GameObject.Find("HUDCanvas").transform.Find("Item").gameObject;
     }
 
     // Update is called once per frame
@@ -26,6 +29,12 @@ public class PickupController : MonoBehaviour
             {
                 playerMovement.hasItem = true;
                 playerMovement.pickedUpItem = item;
+
+                // Add item to HUD UI
+                Image image = itemUISpot.GetComponent<Image>();
+
+                image.enabled = true;
+                image.sprite = spriteImg;
 
                 print("Picked up " + item);
             }
