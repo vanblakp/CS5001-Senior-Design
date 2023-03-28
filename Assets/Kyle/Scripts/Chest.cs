@@ -5,15 +5,19 @@ using UnityEngine;
 public class Chest : Collectable
 {
     public Sprite emptyChest;
-    public int pesosAmount = 5;
+    public int health = 10;
 
-    protected override void OnCollect()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!collected)
+        if ((collision.isTrigger && collision.tag == "Player"))
         {
-            collected = true;
-            GetComponent<SpriteRenderer>().sprite = emptyChest;
-            GameManager.instance.ShowText("+" + pesosAmount + " pesos!",25,Color.yellow,transform.position,Vector3.up * 25, 1.5f);
+            HealthBase actorHealth = collision.GetComponent<HealthBase>();
+            if (actorHealth != null)
+            {
+                actorHealth.HealActor(health);
+            }
+            Destroy(this.gameObject);
         }
+
     }
 }

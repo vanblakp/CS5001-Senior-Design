@@ -35,4 +35,14 @@ public class HealthBase : MonoBehaviour
             // Then reload the level or bring up menu
         }
     }
+
+    // Heals the current actor with given amount of health
+    public virtual void HealActor(int health)
+    {
+        currentHealth += health;
+        if (currentHealth > 100)
+        {
+            currentHealth = 100;
+        }
+    }
 }

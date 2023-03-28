@@ -18,4 +18,10 @@ public class PlayerHealth : HealthBase
         base.DamageActor(damage);
         healthBar.SetValue(currentHealth);
     }
+
+    public override void HealActor(int healing)
+    {
+        base.HealActor(healing);
+        healthBar.SetValue(currentHealth);
+    }
 }
