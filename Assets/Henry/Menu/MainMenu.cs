@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
          * File > Build Settings
          * Add Menu scene, then add subsequent game scenes
          */
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()
