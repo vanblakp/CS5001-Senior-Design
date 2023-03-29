@@ -101,7 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   damage: 10
-  delayToRemove: 20
 --- !u!50 &1111475069730532103
 Rigidbody2D:
   serializedVersion: 4

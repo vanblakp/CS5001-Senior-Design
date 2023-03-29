@@ -9,6 +9,10 @@ public class PickupController : MonoBehaviour
     public string item = "Brick";
     public Sprite spriteImg;
 
+    public float soundDelay = 0.5f;
+    public float volumeChangeMultiplier = 0.2f;
+    public float pitchChangeMultiplier = 0.2f;
+
     private GameObject itemUISpot;
 
     private bool canCheck = false;
@@ -27,6 +31,15 @@ public class PickupController : MonoBehaviour
             // If the player presses E
             if (Input.GetKeyDown(KeyCode.E) && !playerMovement.hasItem)
             {
+                // Play sound effect if one exists
+                if (gameObject.TryGetComponent(out AudioSource audioSource))
+                {
+                    audioSource.time = soundDelay;
+                    audioSource.volume = Random.Range(1 - volumeChangeMultiplier, 1);
+                    audioSource.pitch = Random.Range(1 - pitchChangeMultiplier, 1 + pitchChangeMultiplier);
+                    audioSource.Play(0);
+                }
+
                 playerMovement.hasItem = true;
                 playerMovement.pickedUpItem = item;
 

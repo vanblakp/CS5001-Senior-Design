@@ -7,18 +7,24 @@ public class PlayerMovement : MonoBehaviour
 {
     [HideInInspector] public float moveSpeed;
 
+    [Header("Object Parameters")]
     public GameObject bulletPrefab;
     public Rigidbody2D rb;
     public Animator animator;
     public Camera cam;
     public GameObject bulletSpawnPoint;
 
+    [Header("Bullet Parameters")]
     public float bulletSpawnAdjust = 1.25f;
     public float fireRate = 1f;
     public float fireRateRandomness = 0.5f;
     public int delayToRemoveBullet = 8;
     public int bulletDamage = 10;
+    public AudioClip[] gunshotClips;
+    public float volumeChangeMultiplier = 0.2f;
+    public float pitchChangeMultiplier = 0.2f;
 
+    private AudioSource gunshotSound;
     private bool canShoot = true;
     private List<GameObject> firedBullets = new List<GameObject>();
     private bool isSprinting = false;
@@ -35,6 +41,9 @@ public class PlayerMovement : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         moveSpeed = GetComponent<StaminaController>().walkingSpeed;
+
+        gunshotSound = GetComponent<AudioSource>();
+        gunshotSound.clip = gunshotClips[Random.Range(0, gunshotClips.Length)];
         //bulletSpawnPoint = this.gameObject.transform.GetChild(0).gameObject;
     }
 
@@ -89,10 +98,12 @@ public class PlayerMovement : MonoBehaviour
         canShoot = false;
 
         GameObject firedBullet = Instantiate(bulletPrefab) as GameObject;
+        PlayGunshot();
         firedBullet.layer = 9;
         firedBullet.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-        firedBullet.GetComponent<BulletController>().EnableDestroy(firedBullet, delayToRemoveBullet);
-        firedBullet.GetComponent<BulletController>().damage = bulletDamage;
+        BulletController bulletController = firedBullet.GetComponent<BulletController>();
+        bulletController.EnableDestroy(firedBullet, delayToRemoveBullet);
+        bulletController.damage = bulletDamage;
         firedBullet.transform.position = bulletSpawnPoint.transform.TransformPoint(Vector3.up * bulletSpawnAdjust);
         firedBullet.transform.rotation = bulletSpawnPoint.transform.rotation;
         firedBullets.Append(firedBullet);
@@ -102,5 +113,13 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(actualRate);
         canShoot = true;
+    }
+
+    private void PlayGunshot()
+    {
+        gunshotSound.clip = gunshotClips[Random.Range(0, gunshotClips.Length)];
+        gunshotSound.volume = Random.Range(1 - volumeChangeMultiplier, 1);
+        gunshotSound.pitch = Random.Range(1 - pitchChangeMultiplier, 1 + pitchChangeMultiplier);
+        gunshotSound.PlayOneShot(gunshotSound.clip);
     }
 }

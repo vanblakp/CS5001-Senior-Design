@@ -12,6 +12,10 @@ public class DropoffController : MonoBehaviour
 
     public int repairNeeded = 3;
 
+    public float soundDelay = 0.5f;
+    public float volumeChangeMultiplier = 0.2f;
+    public float pitchChangeMultiplier = 0.2f;
+
     private GameObject itemUISpot;
 
     // Start is called before the first frame update
@@ -30,6 +34,16 @@ public class DropoffController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && playerMovement.hasItem && !(healthBase.currentHealth >= 100))
             {
                 print("Dropped off " + playerMovement.pickedUpItem);
+
+                // Play sound effect if one exists
+                if (gameObject.transform.parent.transform.parent.GetComponent<AudioSource>())
+                {
+                    AudioSource audioSource = gameObject.transform.parent.transform.parent.GetComponent<AudioSource>();
+                    audioSource.time = soundDelay;
+                    audioSource.volume = Random.Range(1 - volumeChangeMultiplier, 1);
+                    audioSource.pitch = Random.Range(1 - pitchChangeMultiplier, 1 + pitchChangeMultiplier);
+                    audioSource.Play(0);
+                }
 
                 playerMovement.hasItem = false;
                 playerMovement.pickedUpItem = "";

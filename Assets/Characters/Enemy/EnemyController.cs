@@ -12,16 +12,25 @@ using Random = UnityEngine.Random;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("Bullet Parameters")]
     public GameObject bulletPrefab;
     public float bulletSpawnAdjust = 1.25f;
     public int range = 20;
-    public int maxDistanceToObject = 10;
-    public float moveSpeed = 1;
     public float fireRate = 1f;
     public float fireRateRandomness = 0.5f;
     public int delayToRemoveBullet = 8;
     public int bulletDamage = 10;
+    public AudioClip[] gunshotClips;
+    public float volumeChangeMultiplier = 0.2f;
+    public float pitchChangeMultiplier = 0.2f;
 
+    [Header("Movement Parameters")]
+    public int maxDistanceToObject = 10;
+    public float moveSpeed = 1;
+
+    private AudioSource gunshotSound;
+
+    [Header("Other Parameters")]
     [SerializeField] private GameObject player;
     private GameObject bulletSpawnPoint;
 
@@ -55,6 +64,9 @@ public class EnemyController : MonoBehaviour
         healthBase = gameObject.GetComponent<HealthBase>();
         animator = GetComponent<Animator>();
         facingRight = true;
+
+        gunshotSound = GetComponent<AudioSource>();
+        gunshotSound.clip = gunshotClips[Random.Range(0, gunshotClips.Length)];
     }
 
     private void FixedUpdate()  // Works aside from a few cases where an enemy breaks a wall, and while moving towards the broken wall they break another
@@ -146,7 +158,7 @@ public class EnemyController : MonoBehaviour
         {
             agent.isStopped = false;
             agent.SetDestination(target.position);
-            if (agent.remainingDistance <= 0.1)
+            if (agent.remainingDistance <= 0.5)
             {
                 insideWalls = true;
                 agent.SetDestination(player.GetComponent<Collider2D>().transform.position);
@@ -246,6 +258,7 @@ public class EnemyController : MonoBehaviour
     void ShootBullet()
     {
         GameObject firedBullet = Instantiate(bulletPrefab) as GameObject;
+        PlayGunshot();
         firedBullet.GetComponent<BulletController>().EnableDestroy(firedBullet, delayToRemoveBullet);
         firedBullet.layer = 6;
         firedBullet.GetComponent<BulletController>().damage = bulletDamage;
@@ -262,5 +275,13 @@ public class EnemyController : MonoBehaviour
         rb.transform.localScale = currentScale;
 
         facingRight = !facingRight;
+    }
+
+    private void PlayGunshot()
+    {
+        gunshotSound.clip = gunshotClips[Random.Range(0, gunshotClips.Length)];
+        gunshotSound.volume = Random.Range(1 - volumeChangeMultiplier, 1);
+        gunshotSound.pitch = Random.Range(1 - pitchChangeMultiplier, 1 + pitchChangeMultiplier);
+        gunshotSound.PlayOneShot(gunshotSound.clip);
     }
 }
