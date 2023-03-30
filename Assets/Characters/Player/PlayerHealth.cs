@@ -7,6 +7,8 @@ public class PlayerHealth : HealthBase
 {
     public ProgressBar healthBar;
 
+    private bool alive = true;
+
     private new void Start()
     {
         base.Start();
@@ -17,11 +19,23 @@ public class PlayerHealth : HealthBase
     {
         base.DamageActor(damage);
         healthBar.SetValue(currentHealth);
+
+        // If player has died, display death UI
+        if (currentHealth <= 0 && removeWhenZero && alive)
+        {
+            alive = false;
+            PlayerDied();
+        }
     }
 
     public override void HealActor(int healing)
     {
         base.HealActor(healing);
         healthBar.SetValue(currentHealth);
+    }
+
+    private void PlayerDied()
+    {
+        LevelManager.instance.GameOver();
     }
 }

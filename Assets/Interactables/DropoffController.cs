@@ -68,10 +68,6 @@ public class DropoffController : MonoBehaviour
             playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
             canCheck = true;
         }
-        else
-        {
-            canCheck = false;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

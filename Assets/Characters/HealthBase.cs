@@ -32,7 +32,6 @@ public class HealthBase : MonoBehaviour
             Animator animator = gameObject.GetComponent<Animator>();
             animator.Play("Death");
             Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length); 
-            // Then reload the level or bring up menu
         }
     }
 
