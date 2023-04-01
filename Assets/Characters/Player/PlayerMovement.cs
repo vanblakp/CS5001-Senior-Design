@@ -53,7 +53,16 @@ public class PlayerMovement : MonoBehaviour
         // Take input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        
+
+        if (movement.x > 0 || movement.y > 0 || movement.x < 0 || movement.y < 0)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else if (movement.x == 0 && movement.y == 0)
+        {
+            animator.SetBool("isWalking", false);
+        }
+
         // Fire bullet
         if (Input.GetButtonDown("Fire1") && canShoot)
         {
@@ -67,8 +76,8 @@ public class PlayerMovement : MonoBehaviour
         movement = movement.normalized;
 
         // Adjust parameters in animator component
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("X", movement.x);
+        animator.SetFloat("Y", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
         // Flips the side animation when player goes left since only the right one is currently used
@@ -96,7 +105,19 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator FireRate()
     {
         canShoot = false;
+        animator.SetTrigger("shoot");
 
+        Invoke("ShootBullet", 0.4f);
+
+        // Randomize the fire rate for more variation (player is set to 0)
+        float actualRate = Random.Range(fireRate - fireRateRandomness, fireRate + fireRateRandomness);
+
+        yield return new WaitForSeconds(actualRate);
+        canShoot = true;
+    }
+
+    void ShootBullet()
+    {
         GameObject firedBullet = Instantiate(bulletPrefab) as GameObject;
         PlayGunshot();
         firedBullet.layer = 9;
@@ -107,12 +128,7 @@ public class PlayerMovement : MonoBehaviour
         firedBullet.transform.position = bulletSpawnPoint.transform.TransformPoint(Vector3.up * bulletSpawnAdjust);
         firedBullet.transform.rotation = bulletSpawnPoint.transform.rotation;
         firedBullets.Append(firedBullet);
-
-        // Randomize the fire rate for more variation (player is set to 0)
-        float actualRate = Random.Range(fireRate - fireRateRandomness, fireRate + fireRateRandomness);
-
-        yield return new WaitForSeconds(actualRate);
-        canShoot = true;
+        animator.ResetTrigger("shoot");
     }
 
     private void PlayGunshot()
