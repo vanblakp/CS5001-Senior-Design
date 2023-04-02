@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,6 +11,27 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject deathPanel;
     [SerializeField] GameObject HUDPanel;
     [SerializeField] GameObject PausePanel;
+
+    private float startTime;
+    private TMP_Text surviveText;
+
+    void Start()
+    {
+        startTime = Time.time;
+        surviveText = deathPanel.transform.Find("DeathMenu").Find("Score").gameObject.GetComponent<TMP_Text>();
+    }
+
+    public float GetRunTime()
+    {
+        float runTime = Time.time - startTime;
+        return runTime;
+    }
+
+    public void SetFinalScore()
+    {
+        surviveText = deathPanel.transform.Find("DeathMenu").Find("Score").gameObject.GetComponent<TMP_Text>();
+        surviveText.text = "Survived " + GetRunTime() + " seconds";
+    }
 
     public void ToggleDeathPanel()
     {

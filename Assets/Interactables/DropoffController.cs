@@ -12,6 +12,8 @@ public class DropoffController : MonoBehaviour
 
     public int repairNeeded = 3;
 
+    [Header("Audio Parameters")]
+    public AudioClip audioFile;
     public float soundDelay = 0.5f;
     public float volumeChangeMultiplier = 0.2f;
     public float pitchChangeMultiplier = 0.2f;
@@ -39,6 +41,7 @@ public class DropoffController : MonoBehaviour
                 if (gameObject.transform.parent.transform.parent.GetComponent<AudioSource>())
                 {
                     AudioSource audioSource = gameObject.transform.parent.transform.parent.GetComponent<AudioSource>();
+                    audioSource.clip = audioFile;
                     audioSource.time = soundDelay;
                     audioSource.volume = Random.Range(1 - volumeChangeMultiplier, 1);
                     audioSource.pitch = Random.Range(1 - pitchChangeMultiplier, 1 + pitchChangeMultiplier);

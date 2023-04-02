@@ -259,9 +259,10 @@ public class EnemyController : MonoBehaviour
     {
         GameObject firedBullet = Instantiate(bulletPrefab) as GameObject;
         PlayGunshot();
-        firedBullet.GetComponent<BulletController>().EnableDestroy(firedBullet, delayToRemoveBullet);
+        firedBullet.GetComponentInChildren<BulletController>().EnableDestroy(firedBullet, delayToRemoveBullet);
         firedBullet.layer = 6;
-        firedBullet.GetComponent<BulletController>().damage = bulletDamage;
+        firedBullet.transform.GetChild(0).gameObject.layer = 6;
+        firedBullet.GetComponentInChildren<BulletController>().damage = bulletDamage;
         firedBullet.transform.position = bulletSpawnPoint.transform.TransformPoint(Vector3.up * bulletSpawnAdjust);
         firedBullet.transform.rotation = bulletSpawnPoint.transform.rotation;
         firedBullets.Append(firedBullet);

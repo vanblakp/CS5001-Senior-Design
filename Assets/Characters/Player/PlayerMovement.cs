@@ -28,8 +28,12 @@ public class PlayerMovement : MonoBehaviour
     private bool canShoot = true;
     private List<GameObject> firedBullets = new List<GameObject>();
     private bool isSprinting = false;
+
     public bool hasItem { get; set; } = false;
     public string pickedUpItem { get; set; } = "";
+
+    private HealthBase healthBase;
+
 
     Vector2 movement;
     Vector2 mousePos;
@@ -44,47 +48,51 @@ public class PlayerMovement : MonoBehaviour
 
         gunshotSound = GetComponent<AudioSource>();
         gunshotSound.clip = gunshotClips[Random.Range(0, gunshotClips.Length)];
-        //bulletSpawnPoint = this.gameObject.transform.GetChild(0).gameObject;
+
+        healthBase = gameObject.GetComponent<HealthBase>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Take input
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        if (movement.x > 0 || movement.y > 0 || movement.x < 0 || movement.y < 0)
+        if (healthBase.isAlive)
         {
-            animator.SetBool("isWalking", true);
+            // Take input
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+
+            if (movement.x > 0 || movement.y > 0 || movement.x < 0 || movement.y < 0)
+            {
+                animator.SetBool("isWalking", true);
+            }
+            else if (movement.x == 0 && movement.y == 0)
+            {
+                animator.SetBool("isWalking", false);
+            }
+
+            // Fire bullet
+            if (Input.GetButtonDown("Fire1") && canShoot)
+            {
+                StartCoroutine(FireRate());
+            }
+
+            // Retrieve mouse position on the screen
+            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+            // Normalize to avoid diagonal speed being faster
+            movement = movement.normalized;
+
+            // Adjust parameters in animator component
+            animator.SetFloat("X", movement.x);
+            animator.SetFloat("Y", movement.y);
+            animator.SetFloat("Speed", movement.sqrMagnitude);
+
+            // Flips the side animation when player goes left since only the right one is currently used
+            spriteRenderer.flipX = movement.x < 0.01 ? true : false;
+
+            // Sets to true if the player begins sprinting while walking
+            isSprinting = Input.GetButton("Sprint") && (Input.GetButton("Horizontal") || Input.GetButton("Vertical"));
         }
-        else if (movement.x == 0 && movement.y == 0)
-        {
-            animator.SetBool("isWalking", false);
-        }
-
-        // Fire bullet
-        if (Input.GetButtonDown("Fire1") && canShoot)
-        {
-            StartCoroutine(FireRate());
-        }
-
-        // Retrieve mouse position on the screen
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        // Normalize to avoid diagonal speed being faster
-        movement = movement.normalized;
-
-        // Adjust parameters in animator component
-        animator.SetFloat("X", movement.x);
-        animator.SetFloat("Y", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
-
-        // Flips the side animation when player goes left since only the right one is currently used
-        spriteRenderer.flipX = movement.x < 0.01 ? true : false;
-
-        // Sets to true if the player begins sprinting while walking
-        isSprinting = Input.GetButton("Sprint") && (Input.GetButton("Horizontal") || Input.GetButton("Vertical"));
     }
 
     // Similar to Update except it's consistent to avoid issues in changing framerates
@@ -121,8 +129,9 @@ public class PlayerMovement : MonoBehaviour
         GameObject firedBullet = Instantiate(bulletPrefab) as GameObject;
         PlayGunshot();
         firedBullet.layer = 9;
-        firedBullet.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-        BulletController bulletController = firedBullet.GetComponent<BulletController>();
+        firedBullet.transform.GetChild(0).gameObject.layer = 9;
+        firedBullet.GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Player";
+        BulletController bulletController = firedBullet.GetComponentInChildren<BulletController>();
         bulletController.EnableDestroy(firedBullet, delayToRemoveBullet);
         bulletController.damage = bulletDamage;
         firedBullet.transform.position = bulletSpawnPoint.transform.TransformPoint(Vector3.up * bulletSpawnAdjust);

@@ -330,6 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasCannon: 0
   repairPercentage: 100
+  destroySound: {fileID: 8300000, guid: ebda5d804946a1a4da45f320768f1418, type: 3}
   brokenChild: {fileID: 320035086331759078}
   cannon: {fileID: 5783724936926101818}
 --- !u!82 &4759074897612934613
@@ -388,7 +389,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1005,6 +1006,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repairNeeded: 2
+  audioFile: {fileID: 8300000, guid: ecb99481e15c4e0458dea816cc572db7, type: 3}
+  soundDelay: 0.5
+  volumeChangeMultiplier: 0.2
+  pitchChangeMultiplier: 0.2
 --- !u!1 &5783724936926101818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,3 +1519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repairNeeded: 2
+  audioFile: {fileID: 8300000, guid: ecb99481e15c4e0458dea816cc572db7, type: 3}
+  soundDelay: 0.5
+  volumeChangeMultiplier: 0.2
+  pitchChangeMultiplier: 0.2

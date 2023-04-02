@@ -7,7 +7,7 @@ public class WallController : MonoBehaviour
 {
     public bool hasCannon = false;
     public int repairPercentage = 100;
-    //public GameObject NavMesh;
+    public AudioClip destroySound;
 
     [SerializeField] private GameObject brokenChild;
     [SerializeField] private GameObject cannon;
@@ -53,8 +53,10 @@ public class WallController : MonoBehaviour
         cannon.SetActive(false);
         brokenChild.SetActive(true);
         repaired = false;
-        //navMeshModifier.area = 2;
-        //NavMesh.GetComponent<DynamicNavMesh>().UpdateNavigation();
+
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = destroySound;
+        audioSource.Play();
     }
 
     // Repairs the rubble into the wall

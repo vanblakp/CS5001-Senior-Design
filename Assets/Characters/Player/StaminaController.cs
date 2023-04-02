@@ -134,4 +134,18 @@ public class StaminaController : MonoBehaviour
             //UpdateStamina(1);
         }
     }
+
+    // Manually add stamina to player without going over maximum amount
+    public void AddStamina(float val)
+    {
+        if (playerStamina + val > maxStamina)
+        {
+            playerStamina = maxStamina;
+        }
+        else
+        {
+            playerStamina = playerStamina + val;
+        }
+        staminaBar.SetValue(playerStamina);
+    }
 }

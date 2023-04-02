@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
             _ui.ToggleHUDPanel();
             _ui.TogglePausePanel();
             _ui.ToggleDeathPanel();
+            _ui.SetFinalScore();
         }
     }
 }
