@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 [System.Serializable]
 
@@ -13,11 +15,19 @@ public class Wave
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Wave[] waves;
+    public List<Wave> waves = new List<Wave>();
     public Transform[] spawnPoints;
 
     [Tooltip("Uses the first wave values to create an infinite wave")]
+    public bool useOnlyFirst = false;
+
+    [Header("Infinite Wave Parameters")]
+    [Tooltip("Randomly generates infinite waves")]
     public bool infinite = false;
+    public int minEnemiesInWave = 1;
+    public int maxEnemiesInWave = 10;
+    public GameObject[] randomTypeOfEnemies;
+    public float maxSpawnInterval = 2;
 
     private Wave currentWave;
     private int currentWaveNum;
@@ -32,10 +42,20 @@ public class WaveSpawner : MonoBehaviour
         GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         
         // Move on to the next wave unless it is the last wave
-        if (totalEnemies.Length == 0 && !canSpawn && currentWaveNum + 1 != waves.Length)
+        if (totalEnemies.Length == 0 && !canSpawn && currentWaveNum + 1 != waves.Count)
         {
             currentWaveNum++;
             canSpawn = true;
+
+            // If wanting to randomly make an infinite number of waves
+            if (infinite)
+            {
+                Wave newWave = new Wave();
+                newWave.numEnemies = Random.Range(minEnemiesInWave, maxEnemiesInWave);
+                newWave.typeOfEnemies = randomTypeOfEnemies;
+                newWave.spawnInterval = Random.Range(1, maxSpawnInterval);
+                waves.Add(newWave);
+            }
         }
     }
 
@@ -49,8 +69,8 @@ public class WaveSpawner : MonoBehaviour
             Instantiate(randomEnemy, randomPoint.position, Quaternion.identity); //randomPoint.rotation);
             nextSpawnTime = Time.time + currentWave.spawnInterval;
 
-            // If in a finite amount of waves, move onto the next wave
-            if (!infinite)
+            // If wanting to only use first wave infinitely
+            if (!useOnlyFirst)
             {
                 currentWave.numEnemies--;
                 if (currentWave.numEnemies == 0)

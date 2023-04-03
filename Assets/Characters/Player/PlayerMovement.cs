@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
             // Adjust parameters in animator component
             animator.SetFloat("X", movement.x);
             animator.SetFloat("Y", movement.y);
-            animator.SetFloat("Speed", movement.sqrMagnitude);
+            //animator.SetFloat("Speed", movement.sqrMagnitude);
 
             // Flips the side animation when player goes left since only the right one is currently used
             spriteRenderer.flipX = movement.x < 0.01 ? true : false;

@@ -46,17 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - waveName: First
-    numEnemies: 5
-    typeOfEnemies:
-    - {fileID: 8863758012896810142, guid: 651de72ff7c69524c9d5a3d176c0151e, type: 3}
-    spawnInterval: 1
-  - waveName: Wave 2
     numEnemies: 3
     typeOfEnemies:
     - {fileID: 8863758012896810142, guid: 651de72ff7c69524c9d5a3d176c0151e, type: 3}
     spawnInterval: 1
-  - waveName: Wave 3
-    numEnemies: 8
+  - waveName: Second(Buffer)
+    numEnemies: 5
     typeOfEnemies:
     - {fileID: 8863758012896810142, guid: 651de72ff7c69524c9d5a3d176c0151e, type: 3}
     spawnInterval: 2
@@ -90,4 +85,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  infinite: 0
+  useOnlyFirst: 0
+  infinite: 1
+  minEnemiesInWave: 1
+  maxEnemiesInWave: 10
+  randomTypeOfEnemies:
+  - {fileID: 8863758012896810142, guid: 651de72ff7c69524c9d5a3d176c0151e, type: 3}
+  maxSpawnInterval: 3
