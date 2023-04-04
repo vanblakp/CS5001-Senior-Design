@@ -46516,6 +46516,7 @@ MonoBehaviour:
   deathPanel: {fileID: 660730313}
   HUDPanel: {fileID: 194583867}
   PausePanel: {fileID: 912768392}
+  player: {fileID: 1719460694}
 --- !u!4 &430301067
 Transform:
   m_ObjectHideFlags: 0
@@ -57255,6 +57256,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4225077821424801397, guid: c21762ec784b8aa4082b804f6d6e2954, type: 3}
+      propertyPath: health
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1594881989286401605, guid: c21762ec784b8aa4082b804f6d6e2954, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c21762ec784b8aa4082b804f6d6e2954, type: 3}
@@ -58113,6 +58118,10 @@ PrefabInstance:
     - target: {fileID: 1594881989286401606, guid: c21762ec784b8aa4082b804f6d6e2954, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225077821424801397, guid: c21762ec784b8aa4082b804f6d6e2954, type: 3}
+      propertyPath: health
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1594881989286401605, guid: c21762ec784b8aa4082b804f6d6e2954, type: 3}
@@ -59095,6 +59104,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1719460694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2226743029433435777, guid: cfccf6c53ec231e41a6886d650e567d7, type: 3}
+  m_PrefabInstance: {fileID: 2226743029214862647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1720641341
 GameObject:
   m_ObjectHideFlags: 0
@@ -90725,8 +90739,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 430301066}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: TogglePauseState
-        m_Mode: 3
+        m_MethodName: Resume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

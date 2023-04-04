@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject HUDPanel;
     [SerializeField] GameObject PausePanel;
 
+    public GameObject player;
+
     private float startTime;
     private TMP_Text surviveText;
 
@@ -19,6 +21,36 @@ public class UIManager : MonoBehaviour
     {
         startTime = Time.time;
         surviveText = deathPanel.transform.Find("DeathMenu").Find("Score").gameObject.GetComponent<TMP_Text>();
+    }
+
+    private void Update()
+    {
+        if (player != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) && player.GetComponent<PlayerHealth>().isAlive)
+            {
+                if (Time.timeScale == 0)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                }
+            }
+        }
+    }
+
+    public void Resume()
+    {
+        TogglePausePanel(false);
+        TogglePauseState(1);
+    }
+
+    public void Pause()
+    {
+        TogglePausePanel(true);
+        TogglePauseState(0);
     }
 
     public float GetRunTime()
