@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
+using UnityEngine.Tilemaps;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
+using NavMeshPlus.Extensions;
 using Random = UnityEngine.Random;
 
 public class EnemyController : MonoBehaviour

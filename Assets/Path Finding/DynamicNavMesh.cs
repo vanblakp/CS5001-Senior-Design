@@ -1,7 +1,8 @@
 using NavMeshPlus.Components;
 using System.Collections;
+using NavMeshPlus.Extensions;
 using System.Collections.Generic;
-using UnityEditor.AI;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class DynamicNavMesh : MonoBehaviour

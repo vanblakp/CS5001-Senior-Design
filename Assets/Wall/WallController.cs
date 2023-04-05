@@ -12,7 +12,7 @@ public class WallController : MonoBehaviour
     [SerializeField] private GameObject brokenChild;
     [SerializeField] private GameObject cannon;
 
-    private new BoxCollider2D collider;
+    private BoxCollider2D collider;
     private SpriteRenderer spriteRenderer;
     private HealthBase healthBase;
     private bool repaired = true;
