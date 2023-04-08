@@ -1,5 +1,5 @@
 # Appendix
-
+## Fall
 ### Meeting Notes
 
 ### Week of Assignment 3 (5 hours)
@@ -46,3 +46,31 @@
 - Wrote up README, budget, and appendix
 - Finalized meeting notes
 - Looked forward to the Spring semester to lay technical groundwork for our project's development
+
+## Spring
+### Meeting Notes
+### Week of Assignment 1 (3 hours)
+- First meeting of second semester
+- Discussed plans for the semester and such
+- Completed test plan cases, matrix, and description
+
+### Week of Assignment 2 (4 hours)
+- Discussed individual progress and the overal direction of the game
+- Created a User Manual and User Documentation page on GitHub
+
+### Week of Assignment 3 (4 hours)
+- Discussed individual progress and the overal direction of the game
+- Adjusted project presentation to incorporate current progress and future plans
+
+### Week of Assignment 4 (6 hours)
+- Discussed individual progress and the overal direction of the game
+- Created the project's poster to display at the Spring 2023 CEAS Senior Design Expo
+
+### Week of Assignment 5 (5 hours)
+- Discussed individual progress and the overal direction of the game
+- Updated all information on Github and shared document from professor leading the class
+
+### Week of Expo (7 hours)
+- Discussed any last changes and updates to the game
+- Created final build of the game
+- Discussed Expo details such as getting there, what to talk about and display, etc.
