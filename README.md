@@ -13,7 +13,7 @@
 8. Summary of Tasks, Hours and Justification
     * [Task List](https://github.com/vanblakp/CS5001-Senior-Design/blob/main/Documents/Tasklist.md)
     * [Expected Timeline](https://github.com/vanblakp/CS5001-Senior-Design/blob/main/Documents/Assignment6.md)
-    * $[Actual Hours]()
+    * [Actual Hours](https://github.com/vanblakp/CS5001-Senior-Design/blob/main/Documents/HourLog.md)
 9. [Budget](https://github.com/vanblakp/CS5001-Senior-Design/blob/main/Documents/Budget.md)
 10. [Professional Biographies](https://github.com/vanblakp/CS5001-Senior-Design/tree/main/Documents/Professional%20Biographies)
 11. User Stories and Design Diagrams
