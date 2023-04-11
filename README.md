@@ -2,7 +2,7 @@
 
 ## Table of Contents
 1. [Project Description](https://github.com/vanblakp/CS5001-Senior-Design/blob/main/Project-Description.md)
-2. $[User Interface Specification]()
+2. [User Interface Specification](https://github.com/vanblakp/CS5001-Senior-Design/blob/main/Documents/UserInterfaceSpec.md)
 3. Test Plan and Results
     * [Test Plan](https://github.com/vanblakp/CS5001-Senior-Design/blob/main/Documents/Test%20Plan.pdf)
     * $[Test Results]()
