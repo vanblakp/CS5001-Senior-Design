@@ -1,8 +1,9 @@
 # Actual Hours Spent
 
 ## Henry Stiefel
-Hours: 0 \
+Hours: 45 \
 Justification: 
+In addition to the regular classwork and the meetings our team held, I helped with the development of the game, asset creation and preparation, and editing and splicing audio to use for in-game music and sound effects. I worked on the game's animations, implementing the sprites for both the enemy and player characters, controlling the animations to change based on game triggers, added in music for both the menu and game's fight scene, and created UI elements such as the main menu, options menu, and pause menu. Much of the time spent throughout both semesters was invested in learning how to write code for Unity and create games with the engine, which allowed me to develop new skills and understand more about the process of game development. 
 
 ## Kyle Van Blaricom
 Hours: 0 \
