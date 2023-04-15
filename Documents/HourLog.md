@@ -17,5 +17,5 @@ I focused on developing the base game which included the code behind the player,
 
 
 ## Ryan Moore
-Hours: 0 \
-Justification: 
+Hours: 45 \
+Justification: Between participating in our regular team meetings and helping organize our documents and work, much of my focus was on learning about Unity and 2D games and helping test the game to make sure it worked properly. Some work I attempted to finish was done faster by other team members. Tutorials online were used to understand how 2D game development works and how to apply it to our project. I learned more about the importance of working with different team roles works and organizing the project between the whole team. I also learned more about Unity itself after having mostly little experience with it before the project began last semester.
